@@ -7,7 +7,7 @@
 }
 
 .bg-login{
-    background:linear-gradient(#000000aa,#000000aa ), url('../../images/bg-login.jpg');
+    background:linear-gradient(#000000aa,#000000aa ), url('../../images/bg-login.jpeg');
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,7 +18,7 @@
         display: none;
     }   
     .bg-login-alt{
-        background: linear-gradient(#000000aa,#000000aa ),url('../../images/bg-login.jpg');
+        background: linear-gradient(#000000aa,#000000aa ),url('../../images/bg-login.jpeg');
         background-position: left;
         background-repeat: no-repeat;
         background-size: cover;

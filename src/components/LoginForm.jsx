@@ -1,12 +1,33 @@
+import React from 'react'
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './css/LoginForm.css'
+import axios from 'axios';
+import md5 from 'md5';
 
 const LoginForm = () => {
-    const onFinish = (values) => {
-        //console.log('Received values of form: ', values);
-        alert("Datos incorrectos")
+    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+
+    const onFinish = async (values) => {
+        console.log( values);
+        let usuario = values.username;
+        let password = values.password;
+        console.log(usuario);
+        await axios.get(`${urlBase}/iniciarSesion`, {params: {usuario, contrasena: md5(password)}})
+        .then(response => {
+            return response.data
+        })
+        .then(response =>{
+            if (response.dato === "1") {
+                localStorage.setItem('id', response.id)
+                alert("Bienvenido")
+                window.location.href = "./panel/registro-consulta";
+            } else if (response.dato === "0") {
+                alert("Datos incorrectos")
+            }
+        })
     };
+
 
     return (
         <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
