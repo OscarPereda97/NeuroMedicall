@@ -21,6 +21,7 @@ const Historias = () => {
     }
 
     const imprimirPDF = async(id)=>{
+        alert("Error al enviar solicitud de impresión")
         const data = await fetch(`${urlBase}/imprimirPDF/${id}`)
             .then(console.log("Peticion correcta"))
             .catch(console.log("Error"))
