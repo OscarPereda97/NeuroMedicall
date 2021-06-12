@@ -5,12 +5,16 @@ import './css/Panel.css';
 import Dashboard from './panel/Dashboard';
 import Pacientes from './panel/pacientes/Pacientes';
 import AddPaciente from './panel/pacientes/AddPaciente';
+import EditPaciente from './panel/pacientes/EditPaciente';
 import Usuarios from './panel/clinica/Usuarios';
 import AddUsuario from './panel/clinica/AddUsuario';
+import EditUsuario from './panel/clinica/EditUsuario';
 import Servicios from './panel/clinica/Servicios';
 import AddServicio from './panel/clinica/AddServicio';
+import EditServicio from './panel/clinica/EditServicio';
 import Medicamentos from './panel/clinica/Medicamentos';
 import AddMedicamento from './panel/clinica/AddMedicamento';
+import EditMedicamento from './panel/clinica/EditMedicamento';
 import RegistroConsulta from './panel/registroconsulta/RegistroConsulta';
 import AddRegistroConsulta from './panel/registroconsulta/AddRegistroConsulta';
 import Atencion from './panel/atencion/Atencion';
@@ -80,12 +84,16 @@ class Panel extends React.Component {
                                         <Switch>
                                             <Route exact path="/panel/pacientes" component={Pacientes} />
                                             <Route exact path="/panel/pacientes/add" component={AddPaciente} />
+                                            <Route exact path="/panel/pacientes/edit/:id" component={EditPaciente} />
                                             <Route exact path="/panel/clinica/personal" component={Usuarios} />
                                             <Route exact path="/panel/clinica/personal/add" component={AddUsuario} />
+                                            <Route exact path="/panel/clinica/personal/edit/:id" component={EditUsuario} />
                                             <Route exact path="/panel/clinica/servicios" component={Servicios} />
                                             <Route exact path="/panel/clinica/servicios/add" component={AddServicio} />
+                                            <Route exact path="/panel/clinica/servicios/edit/:id" component={EditServicio} />
                                             <Route exact path="/panel/clinica/medicamentos" component={Medicamentos} />
                                             <Route exact path="/panel/clinica/medicamentos/add" component={AddMedicamento} />
+                                            <Route exact path="/panel/clinica/medicamentos/edit/:id" component={EditMedicamento} />
                                             <Route exact path="/panel/registro-consulta/" component={RegistroConsulta} />
                                             <Route exact path="/panel/registro-consulta/add" component={AddRegistroConsulta} />
                                             <Route exact path="/panel/atencion/" component={Atencion} />

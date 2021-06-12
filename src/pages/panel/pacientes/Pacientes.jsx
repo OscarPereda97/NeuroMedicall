@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 const Pacientes = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([]) //Datos
 
@@ -73,7 +73,7 @@ const Pacientes = () => {
                                             <td>{item.fechaNacimiento}</td>
                                             <td>{item.sexo}</td>
                                             <td>{item.estadoCivil}</td>
-                                            <td>{item.dni}</td>
+                                            <td>{item.nroDocumento}</td>
                                             <td>{item.direccion}</td>
                                             <td>{item.telefono}</td>
                                         </tr>

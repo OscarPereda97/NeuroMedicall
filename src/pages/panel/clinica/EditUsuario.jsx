@@ -84,7 +84,7 @@ const AddUsuario = () => {
                             <input type="text" name="nombres" className="form-control"  onChange={handleChange}/>
                         </div>
                     </div>
-                    
+                   
                     <div className="col-md-6 col-12">
                         <div className="form-group">
                             <label className="form-label" >Usuario</label>

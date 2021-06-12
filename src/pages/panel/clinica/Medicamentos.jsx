@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Medicamentos = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([])
 
     useEffect(() => {
@@ -58,7 +58,8 @@ const Medicamentos = () => {
                                             <td>{item.nombre}</td>
                                             <td>{item.presentacion}</td>
                                             <td>
-                                                <button onClick={()=>{eliminarMedicamento(item._id)}} className="btn btn-danger"><i className="fas fa-trash"></i></button>
+                                                <Link to={`/panel/clinica/medicamentos/edit/${item._id}`} className="btn btn-primary"><i className="fas fa-pencil-alt"></i></Link>
+                                                <button onClick={() => { eliminarMedicamento(item._id) }} className="btn btn-danger"><i className="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     )

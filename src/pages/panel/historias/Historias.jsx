@@ -4,9 +4,13 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Historias = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
-    const [datos, setDatos] = useState([])
+    const [datos, setDatos] = useState([{
+        pacienteId: "",
+        servicioId: "",
+        especialista: ""
+    }])
 
     useEffect(() => {
         obtenerDatos();

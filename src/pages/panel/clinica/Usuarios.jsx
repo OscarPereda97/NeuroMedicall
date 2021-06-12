@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Usuarios = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([]) //Datos
 
     useEffect(() => {
@@ -45,7 +45,6 @@ const Usuarios = () => {
                             <tr>
                                 <th>Apellidos</th>
                                 <th>Nombres</th>
-                                <th>Rol</th>
                                 <th>Usuario</th>
                                 <th>Opciones</th>
                             </tr>
@@ -54,13 +53,13 @@ const Usuarios = () => {
                             {
                                 datos.map((item) => {
                                     return (
-                                        <tr>
+                                        <tr key={item._id}>
                                             <td>{item.apellidos}</td>
                                             <td>{item.nombres}</td>
-                                            <td>{item.rol}</td>
                                             <td>{item.usuario}</td>
                                             <td>
-                                                <button onClick={()=>{eliminarUsuario(item._id)}} key={item._id + "-delete"}  className="btn btn-danger ms-1"><i className="fas fa-trash"></i></button>
+                                                {item.rol === "superadmin" ? '' : <Link to={`/panel/clinica/personal/edit/${item._id}`} className="btn btn-primary"><i className="fas fa-pencil-alt"></i></Link>}
+                                                <button onClick={() => { eliminarUsuario(item._id) }} key={item._id + "-delete"} className="btn btn-danger ms-1"><i className="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     )

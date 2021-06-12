@@ -1,16 +1,28 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 
 const AddServicio = () => {
+    const {id} = useParams()
     const urlBase = 'http://localhost:8000'
     
     const [servicio, setServicio] = useState({})
 
     useEffect(() => {
-
+        getServicio()
+        console.log(servicio)
     }, [])
+
+    const getServicio = async () => {
+        const data = await fetch(`${urlBase}/getServicios/${id}`)
+            .then(console.log("Peticion correcta"))
+            .catch(console.log("Error"))
+        await data.json().then(res => {
+            console.log(res)
+            setServicio(res)
+        })
+    }
 
     const enviarServicio = (event) => {
         event.preventDefault();
@@ -20,13 +32,13 @@ const AddServicio = () => {
     const guardarServicio = async () => {
         console.log(servicio)
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(servicio)
         }
-        const response = await fetch(`${urlBase}/setServicios`, requestOptions)
+        const response = await fetch(`${urlBase}/updateServicios/${id}`, requestOptions)
         const respuesta = await response.json()
 
         console.log(respuesta)
@@ -68,7 +80,7 @@ const AddServicio = () => {
         <Fragment>
             <div className="row">
                 <div className="col-12">
-                    <h2>Añadir servicio</h2>
+                    <h2>Editar servicio</h2>
                 </div>
                 <div className="col-12 text-end">
                     <Link to="/panel/clinica/servicios" className="btn btn-outline-primary"><i className="fas fa-arrow-left    "></i> Regresar</Link>
@@ -79,13 +91,13 @@ const AddServicio = () => {
                             <div className="col-md-6 col-12">
                                 <div className="form-group">
                                     <label className="form-label">Servicio</label>
-                                    <input type="text" name="servicio" id="servicio" className="form-control" onChange={handleChange} />
+                                    <input type="text" name="servicio" id="servicio" className="form-control" onChange={handleChange} value={servicio.servicio} />
                                 </div>
                             </div>
                             <div className="col-md-6 col-12">
                                 <div className="form-group">
                                     <label className="form-label">Costo</label>
-                                    <input type="number" name="costo" id="costo" className="form-control" onChange={handleChange} />
+                                    <input type="number" name="costo" id="costo" className="form-control" value={servicio.costo} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="col-12">

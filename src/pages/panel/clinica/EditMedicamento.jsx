@@ -1,15 +1,26 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useParams} from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 
 const AddMedicamento = () => {
+    const {id} = useParams()
     const urlBase = 'http://localhost:8000'
     const [medicamento, setMedicamento] = useState({})
 
     useEffect(() => {
-
+        getMedicamento()
     }, [])
+
+    const getMedicamento = async () => {
+        const data = await fetch(`${urlBase}/getMedicamentos/${id}`)
+            .then(console.log("Peticion correcta"))
+            .catch(console.log("Error"))
+        await data.json().then(res => {
+            console.log(res)
+            setMedicamento(res)
+        })
+    }
 
     const enviarMedicamento = (event) => {
         event.preventDefault();
@@ -56,7 +67,7 @@ const AddMedicamento = () => {
         <Fragment>
             <div className="row">
                 <div className="col-12">
-                    <h2><strong>Añadir medicamento</strong></h2>
+                    <h2><strong>Editar medicamento</strong></h2>
                 </div>
                 <div className="col-12 text-end">
                     <Link to="/panel/clinica/medicamentos" className="btn btn-outline-primary"><i className="fas fa-arrow-left    "></i> Regresar</Link>
@@ -66,13 +77,13 @@ const AddMedicamento = () => {
                         <div className="col-md-6 col-12">
                             <div className="form-group">
                                 <label className="form-label">Medicamento</label>
-                                <input type="text" name="nombre" id="nombre" className="form-control" onChange={handleChange}/>
+                                <input type="text" name="nombre" id="nombre" className="form-control" value={medicamento.nombre} onChange={handleChange}/>
                             </div>
                         </div>
                         <div className="col-md-6 col-12">
                             <div className="form-group">
                                 <label className="form-label">Presentación</label>
-                                <input type="text" name="presentacion" id="presentacion" className="form-control" onChange={handleChange}/>
+                                <input type="text" name="presentacion" id="presentacion" className="form-control" value={medicamento.presentacion} onChange={handleChange}/>
                             </div>
                         </div>
                         <div className="col-12">
