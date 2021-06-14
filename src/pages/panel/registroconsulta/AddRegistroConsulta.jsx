@@ -47,9 +47,9 @@ const AddRegistroConsulta = () => {
     //Obtener monto y servicio
     const handleChangeServicio = (event) => {
         let index = event.target.selectedIndex;
-        if (event.target.options[index].value != "none") {
+        if (event.target.options[index].value !== "none") {
             setServicioId(event.target.options[index].value)
-            let servicioActual = servicios.find(servicio => servicio._id == event.target.options[index].value)
+            let servicioActual = servicios.find(servicio => servicio._id === event.target.options[index].value)
             console.log(servicioActual)
             setCosto(servicioActual.costo)
         } else {

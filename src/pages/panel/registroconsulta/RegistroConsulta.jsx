@@ -39,7 +39,7 @@ const RegistroConsulta = () => {
 
     const eliminarUsuario = async (id) => {
         console.log(id)
-        const data = await fetch(`${urlBase}/deleteConsulta/${id}`, {
+        await fetch(`${urlBase}/deleteConsulta/${id}`, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -50,7 +50,14 @@ const RegistroConsulta = () => {
         obtenerDatos()
     }
  
+    function formatearFecha(fechaa){
+        let fecha = new Date(fechaa)
+        let dia = fecha.getDate()
+        let mes = fecha.getMonth() + 1;
+        let anio = fecha.getFullYear();
 
+        return dia + "-" + mes + "-" + anio
+    }
     return (
         <Fragment>
             <div className="row">
@@ -80,7 +87,7 @@ const RegistroConsulta = () => {
                                 datos.map(item => {
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.createdAt}</td>
+                                            <td>{formatearFecha(item.createdAt)}</td>
                                             <td>{item.servicioId.servicio}</td>
                                             <td>{item.especialista}</td>
                                             <td>{item.pacienteId.apellidoPaterno} {item.pacienteId.apellidoMaterno} {item.pacienteId.nombres}</td>

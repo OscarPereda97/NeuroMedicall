@@ -56,10 +56,6 @@ const AddPaciente = () => {
         console.log(paciente)
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        guardarPaciente()
-    }
 
     return (
         <div className="row">

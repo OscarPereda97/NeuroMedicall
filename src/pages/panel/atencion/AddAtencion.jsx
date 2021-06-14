@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState, useLayoutEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
-import useConstructor from "./UserConstructor";
 
 const AddAtencion = () => {
     const urlBase = 'http://localhost:8000'
@@ -44,7 +43,7 @@ const AddAtencion = () => {
         if (event.target.options[index].value != "none") {
             let presentacion = medicamentosList.find(medicamento => medicamento._id === event.target.options[index].value)
             setMedicamento({
-                _id: event.target.options[index].value,
+                medicamentoId: event.target.options[index].value,
                 nombre: event.target.options[index].text,
                 presentacion: presentacion.presentacion || ""
             })
@@ -53,7 +52,7 @@ const AddAtencion = () => {
         } else {
             button.disabled = true
             setMedicamento({
-                _id: "",
+                medicamentoId: "",
                 nombre: "",
                 presentacion: ""
             })
@@ -78,7 +77,7 @@ const AddAtencion = () => {
         document.getElementById("cantidad").value = ""
         document.getElementById("medicamento").value = "none"
         setMedicamento({
-            _id: "",
+            medicamentoId: "",
             nombre: "",
             presentacion: "",
             dosis: "",
@@ -372,9 +371,9 @@ const AddAtencion = () => {
                                                 <tr>
                                                     <th>Medicamento</th>
                                                     <th>Presentación</th>
-                                                    <th>Dosis</th>
-                                                    <th>Duración</th>
-                                                    <th>Cantidad</th>
+                                                    <th>Dosis (Por día)</th>
+                                                    <th>Duración (Días)</th>
+                                                    <th>Cantidad (Total)</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                             </thead>

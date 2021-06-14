@@ -9,6 +9,7 @@ const Historias = () => {
     const [datos, setDatos] = useState([{
         pacienteId: "",
         servicioId: "",
+        consultaId: "",
         especialista: ""
     }])
 
@@ -24,13 +25,15 @@ const Historias = () => {
         setDatos(datos.atenciones)
     }
 
-    const imprimirPDF = async(id)=>{
-        alert("Error al enviar solicitud de impresión")
-        const data = await fetch(`${urlBase}/imprimirPDF/${id}`)
-            .then(console.log("Peticion correcta"))
-            .catch(console.log("Error"))
-    }
+    function formatearFecha(fechaa){
+        let fecha = new Date(fechaa)
+        let dia = fecha.getDate()
+        let mes = fecha.getMonth() + 1;
+        let anio = fecha.getFullYear();
 
+        return dia + "-" + mes + "-" + anio
+    }
+   
     return (
         <Fragment>
             <div className="row">
@@ -53,11 +56,11 @@ const Historias = () => {
                                     console.log(item)
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.createdAt}</td>
+                                            <td>{formatearFecha(item.createdAt)}</td>
                                             <td>{item.pacienteId.apellidoPaterno} {item.pacienteId.apellidoMaterno} {item.pacienteId.nombres}</td>
                                             <td>{item.servicioId.servicio}</td>
                                             <td>
-                                               <button onClick={()=>{imprimirPDF(item._id)}} className="btn btn-primary"><i class="fas fa-print    "></i></button>
+                                               <Link to={`/panel/historias/${item._id}`} className="btn btn-primary"><i className="fas fa-file-prescription"></i></Link>
                                             </td>
                                         </tr>
                                     )

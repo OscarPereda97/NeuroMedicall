@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
+import '../../css/ViewAtencion.css'
 
 const Atencion = () => {
     const urlBase = 'http://localhost:8000'
@@ -10,7 +11,7 @@ const Atencion = () => {
 
     useEffect(() => {
         obtenerDatos();
-    },[])
+    }, [])
 
     const obtenerDatos = async () => {
         const data = await fetch(`${urlBase}/getConsultas`)
@@ -20,15 +21,22 @@ const Atencion = () => {
         setDatos(datos.consultas)
     }
 
+    function formatearFecha(fechaa){
+        let fecha = new Date(fechaa)
+        let dia = fecha.getDate()
+        let mes = fecha.getMonth() + 1;
+        let anio = fecha.getFullYear();
+
+        return dia + "-" + mes + "-" + anio
+    }
+
     return (
         <Fragment>
             <div className="row">
                 <div className="col-12">
                     <h2><strong>Atención de pacientes</strong></h2>
                 </div>
-                <div className="col-12 text-end">
-                    <Link to="/panel/atencion/add" className="btn btn-success"><i className="fas fa-plus    "></i> Añadir</Link>
-                </div>
+                
                 <div className="col-12">
                     <table className="table table-hover table-striped">
                         <thead>
@@ -43,14 +51,14 @@ const Atencion = () => {
                         </thead>
                         <tbody>
                             {
-                                datos.map(item=>{
+                                datos.map(item => {
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.createdAt}</td>
-                                            <td>{item.servicio}</td>
+                                            <td>{formatearFecha(item.createdAt)}</td>
+                                            <td>{item.servicioId.servicio}</td>
                                             <td>{item.especialista}</td>
-                                            <td>{item.paciente}</td>
-                                            <td>{item.costo}</td>
+                                            <td>{item.pacienteId.apellidoPaterno} {item.pacienteId.apellidoMaterno} {item.pacienteId.nombres}</td>
+                                            <td>{item.servicioId.costo}</td>
                                             <td>
                                                 <Link to={`/panel/atencion/add/${item._id}`} className="btn btn-primary"><i className="fas fa-file"></i></Link>
                                             </td>

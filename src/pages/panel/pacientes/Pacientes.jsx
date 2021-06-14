@@ -23,7 +23,7 @@ const Pacientes = () => {
 
     const eliminarPaciente = async (id) => {
         console.log(id)
-        const data = await fetch(`${urlBase}/deletePacientes/${id}`, {
+        await fetch(`${urlBase}/deletePacientes/${id}`, {
             headers: {
                 "Content-Type": "application/json"
             },

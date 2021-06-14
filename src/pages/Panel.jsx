@@ -20,6 +20,7 @@ import AddRegistroConsulta from './panel/registroconsulta/AddRegistroConsulta';
 import Atencion from './panel/atencion/Atencion';
 import AddAtencion from './panel/atencion/AddAtencion';
 import Historias from './panel/historias/Historias';
+import ViewHistorias from './panel/historias/ViewHistoria';
 import { Layout, Menu } from 'antd';
 import { DashboardOutlined, TeamOutlined, LogoutOutlined, MedicineBoxOutlined, SettingOutlined, SnippetsOutlined } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
@@ -99,6 +100,7 @@ class Panel extends React.Component {
                                             <Route exact path="/panel/atencion/" component={Atencion} />
                                             <Route exact path="/panel/atencion/add/:id" component={AddAtencion} />
                                             <Route exact path="/panel/historias" component={Historias} />
+                                            <Route exact path="/panel/historias/:id" component={ViewHistorias} />
                                         </Switch>
                                     </div>
                                 </div>

@@ -1,0 +1,12 @@
+@media print {
+    @page {
+        size: A5 landscape; 
+        padding: 10%
+      }
+    #recetaPrint, #recetaPrint * {
+      visibility: visible;
+    }
+    #recetaPrint {
+        padding: 100px;
+    }
+  }
