@@ -5,7 +5,7 @@ import 'bootstrap'
 import printJS from 'print-js'
 
 const AddAtencion = () => {
-    const urlBase = 'http://localhost:8000'
+    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
     const { id } = useParams()
     const [atencion, setAtencion] = useState({
         pacienteId: "",
