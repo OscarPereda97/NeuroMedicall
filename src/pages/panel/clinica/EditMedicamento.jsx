@@ -30,13 +30,13 @@ const AddMedicamento = () => {
     const guardarMedicamento = async () => {
         console.log(medicamento)
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(medicamento)
         }
-        const response = await fetch(`${urlBase}/setMedicamentos`, requestOptions)
+        const response = await fetch(`${urlBase}/updateMedicamentos/${id}`, requestOptions)
         const respuesta = await response.json()
 
         console.log(respuesta)
