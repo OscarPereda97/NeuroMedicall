@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Usuarios = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([]) //Datos
 
     useEffect(() => {
@@ -18,6 +18,7 @@ const Usuarios = () => {
     }
 
     const eliminarUsuario = async (id) => {
+        if(window.confirm("¿Está seguro que desea eliminar este usuario?"))
         console.log(id)
         const data = await fetch(`${urlBase}/deleteUsers/${id}`, {
             headers: {

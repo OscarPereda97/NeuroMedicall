@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect, useState, useLayoutEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
@@ -40,7 +40,7 @@ const AddAtencion = () => {
     const selectMedicamento = async (event) => {
         let index = event.target.selectedIndex;
         let button = document.getElementById("addMedicamento");
-        if (event.target.options[index].value != "none") {
+        if (event.target.options[index].value !== "none") {
             let presentacion = medicamentosList.find(medicamento => medicamento._id === event.target.options[index].value)
             setMedicamento({
                 medicamentoId: event.target.options[index].value,
@@ -107,6 +107,7 @@ const AddAtencion = () => {
     }
 
     const enviarConsulta = (event) => {
+        document.getElementById("btn-form").setAttribute('disabled', 'true');
         event.preventDefault()
         guardarConsulta()
     }
@@ -400,17 +401,17 @@ const AddAtencion = () => {
                                                     </td>
                                                     <td>
                                                         <div className="form-group">
-                                                            <input type="text" className="form-control" name="dosis" id="dosis" onChange={handleMedicamento} />
+                                                            <input type="number" className="form-control" name="dosis" id="dosis" onChange={handleMedicamento} />
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div className="form-group">
-                                                            <input type="text" className="form-control" name="duracion" id="duracion" onChange={handleMedicamento} />
+                                                            <input type="number" className="form-control" name="duracion" id="duracion" onChange={handleMedicamento} />
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div className="form-group">
-                                                            <input type="text" className="form-control" name="cantidad" id="cantidad" onChange={handleMedicamento} />
+                                                            <input type="number" className="form-control" name="cantidad" id="cantidad" onChange={handleMedicamento} />
                                                         </div>
                                                     </td>
                                                     <td>
@@ -440,7 +441,7 @@ const AddAtencion = () => {
                                 </div>
                             </div>
                             <div className="col-12">
-                                <button type="submit" className="btn btn-success" onClick={enviarConsulta}><i className="fas fa-save    "></i> Guardar</button>
+                                <button type="submit" className="btn btn-success" onClick={enviarConsulta} id="btn-form"><i className="fas fa-save    "></i> Guardar</button>
                             </div>
                         </div>
                     </div>

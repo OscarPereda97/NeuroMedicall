@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddMedicamento = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [medicamento, setMedicamento] = useState({})
 
     useEffect(() => {
@@ -13,6 +13,7 @@ const AddMedicamento = () => {
 
     const enviarMedicamento = (event) => {
         event.preventDefault();
+        document.getElementById("btn-form").setAttribute('disabled', 'true');
         guardarMedicamento();
     }
 
@@ -47,11 +48,6 @@ const AddMedicamento = () => {
         console.log(medicamento)
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        guardarMedicamento()
-    }
-
     return (
         <Fragment>
             <div className="row">
@@ -76,7 +72,7 @@ const AddMedicamento = () => {
                             </div>
                         </div>
                         <div className="col-12">
-                            <button className="btn btn-success" ><i className="fas fa-save"></i> Guardar</button>
+                            <button className="btn btn-success" id="btn-form"><i className="fas fa-save"></i> Guardar</button>
                         </div>
                     </form>
                 </div>

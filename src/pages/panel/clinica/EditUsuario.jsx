@@ -3,7 +3,7 @@ import { Link , useParams} from 'react-router-dom';
 
 const AddUsuario = () => {
     const {id} = useParams();
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [user, setUser] = useState({})
     const [password, setPassword]  = useState({})
@@ -19,6 +19,7 @@ const AddUsuario = () => {
 
     const enviarPassword = (event) => {
         event.preventDefault();
+        document.getElementById("btn-form").setAttribute('disabled', 'true');
         guardarPassword()
     }
 
@@ -122,7 +123,7 @@ const AddUsuario = () => {
                         </div>
                     </div>
                     <div className="col-12">
-                        <button className="btn btn-success"><i className="fas fa-save"></i> Actualizar contraseña</button>
+                        <button className="btn btn-success" id="btn-form"><i className="fas fa-save"></i> Actualizar contraseña</button>
                     </div>
                 </form>
             </div>

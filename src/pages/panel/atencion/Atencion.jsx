@@ -5,7 +5,7 @@ import 'bootstrap'
 import '../../css/ViewAtencion.css'
 
 const Atencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([])
 
@@ -55,10 +55,10 @@ const Atencion = () => {
                                     return (
                                         <tr key={item.id}>
                                             <td>{formatearFecha(item.createdAt)}</td>
-                                            <td>{item.servicioId.servicio}</td>
-                                            <td>{item.especialista}</td>
-                                            <td>{item.pacienteId.apellidoPaterno} {item.pacienteId.apellidoMaterno} {item.pacienteId.nombres}</td>
-                                            <td>{item.servicioId.costo}</td>
+                                            <td>{item.servicioId.servicio ? item.servicioId.servicio : ""}</td>
+                                            <td>{item.especialista ? item.especialista : ''}</td>
+                                            <td>{item.pacienteId.apellidoPaterno ? item.pacienteId.apellidoPaterno : ""} {item.pacienteId.apellidoMaterno ? item.pacienteId.apellidoMaterno : ""} {item.pacienteId.nombres ? item.pacienteId.nombres : ""}</td>
+                                            <td>{item.servicioId.costo ? item.servicioId.costo : ""}</td>
                                             <td>
                                                 <Link to={`/panel/atencion/add/${item._id}`} className="btn btn-primary"><i className="fas fa-file"></i></Link>
                                             </td>

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 const Pacientes = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([]) //Datos
 
@@ -22,16 +22,19 @@ const Pacientes = () => {
     }
 
     const eliminarPaciente = async (id) => {
-        console.log(id)
-        await fetch(`${urlBase}/deletePacientes/${id}`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "DELETE",
-        })
-            .then()
-            .catch()
-        obtenerDatos()
+        if(window.confirm("¿Está seguro de eliminar este paciente?")){
+            console.log(id)
+            await fetch(`${urlBase}/deletePacientes/${id}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "DELETE",
+            })
+                .then()
+                .catch()
+            obtenerDatos()
+        }
+        
     }
 
     return (

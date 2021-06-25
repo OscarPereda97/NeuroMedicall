@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import 'antd/dist/antd.css';
 import './css/Panel.css';
-import Dashboard from './panel/Dashboard';
 import Pacientes from './panel/pacientes/Pacientes';
 import AddPaciente from './panel/pacientes/AddPaciente';
 import EditPaciente from './panel/pacientes/EditPaciente';
@@ -22,7 +21,7 @@ import AddAtencion from './panel/atencion/AddAtencion';
 import Historias from './panel/historias/Historias';
 import ViewHistorias from './panel/historias/ViewHistoria';
 import { Layout, Menu } from 'antd';
-import { DashboardOutlined, TeamOutlined, LogoutOutlined, MedicineBoxOutlined, SettingOutlined, SnippetsOutlined } from '@ant-design/icons';
+import {  TeamOutlined, LogoutOutlined, MedicineBoxOutlined, SettingOutlined, SnippetsOutlined } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -34,7 +33,7 @@ class Panel extends React.Component {
     }
 
     render() {
-        if (localStorage.getItem("id") == "20211997") {
+        if (localStorage.getItem("id") === "20211997") {
             return (
                 <BrowserRouter>
                     <Layout>

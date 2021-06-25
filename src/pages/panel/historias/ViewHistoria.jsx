@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect, useState, useLayoutEffect } from 'react'
+import React, { Fragment, useEffect, useState} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
-import printJS from 'print-js'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [atencion, setAtencion] = useState({
         pacienteId: "",
@@ -31,7 +30,6 @@ const AddAtencion = () => {
 
     useEffect(() => {
         obtenerDatos()
-        console.log(atencion)
     }, [])
 
     function calcularEdad(fecha) {

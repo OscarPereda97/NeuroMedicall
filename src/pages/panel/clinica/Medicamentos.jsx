@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Medicamentos = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([])
 
     useEffect(() => {
@@ -20,16 +20,19 @@ const Medicamentos = () => {
     }
 
     const eliminarMedicamento = async (id) => {
-        console.log(id)
-        const data = await fetch(`${urlBase}/deleteMedicamento/${id}`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "DELETE",
-        })
-            .then()
-            .catch()
-        obtenerDatos()
+        if(window.confirm("¿Está seguro de eliminar este medicamento?")){
+            console.log(id)
+            const data = await fetch(`${urlBase}/deleteMedicamento/${id}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "DELETE",
+            })
+                .then()
+                .catch()
+            obtenerDatos()
+        }
+       
     }
 
     return (

@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const RegistroConsulta = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([])
 
@@ -38,16 +38,19 @@ const RegistroConsulta = () => {
     }
 
     const eliminarUsuario = async (id) => {
-        console.log(id)
-        await fetch(`${urlBase}/deleteConsulta/${id}`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "DELETE",
-        })
-            .then()
-            .catch()
-        obtenerDatos()
+        if(window.confirm("¿Está seguro que desea eliminar esta consulta?")){
+            console.log(id)
+            await fetch(`${urlBase}/deleteConsulta/${id}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "DELETE",
+            })
+                .then()
+                .catch()
+            obtenerDatos()
+        }
+       
     }
  
     function formatearFecha(fechaa){
@@ -88,12 +91,12 @@ const RegistroConsulta = () => {
                                     return (
                                         <tr key={item.id}>
                                             <td>{formatearFecha(item.createdAt)}</td>
-                                            <td>{item.servicioId.servicio}</td>
-                                            <td>{item.especialista}</td>
-                                            <td>{item.pacienteId.apellidoPaterno} {item.pacienteId.apellidoMaterno} {item.pacienteId.nombres}</td>
-                                            <td>{item.pacienteId.nroDocumento}</td>
-                                            <td>{calcularEdad(item.pacienteId.fechaNacimiento)}</td>
-                                            <td>{item.servicioId.costo}</td>
+                                            <td>{item.servicioId ? item.servicioId.servicio : ""}</td>
+                                            <td>{item.especialista ? item.especialista : ""}</td>
+                                            <td>{item.pacienteId ? item.pacienteId.apellidoPaterno : ""} {item.pacienteId ? item.pacienteId.apellidoMaterno : ""} {item.pacienteId ? item.pacienteId.nombres : ""}</td>
+                                            <td>{item.pacienteId ? item.pacienteId.nroDocumento : ""}</td>
+                                            <td>{item.pacienteId ? calcularEdad(item.pacienteId.fechaNacimiento)  : ""}</td>
+                                            <td>{item.servicioId ? item.servicioId.costo : ""}</td>
                                             <td>
                                                 <span className="badge bg-success"> {item.estado}</span>
                                             </td>

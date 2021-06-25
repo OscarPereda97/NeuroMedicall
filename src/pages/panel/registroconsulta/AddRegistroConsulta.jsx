@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddRegistroConsulta = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [documento, setDocumento] = useState()
     const [paciente, setPaciente] = useState()
     const [pacienteId, setPacienteId] = useState()
@@ -65,6 +65,7 @@ const AddRegistroConsulta = () => {
 
     const enviarEspecialista = (event) => { 
         event.preventDefault()
+        document.getElementById("btn-form").setAttribute('disabled', 'true');
         guardarConsulta();
     }
 
@@ -149,7 +150,7 @@ const AddRegistroConsulta = () => {
                                 </div>
                             </div>
                             <div className="col-12">
-                                <button className="btn btn-success"><i className="fas fa-save    "></i> Guardar</button>
+                                <button className="btn btn-success" id="btn-form"><i className="fas fa-save    "></i> Guardar</button>
                             </div>
                         </form>
                     </div>

@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Servicios = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([])
 
@@ -21,16 +21,19 @@ const Servicios = () => {
     }
 
     const eliminarUsuario = async (id) => {
-        console.log(id)
-        const data = await fetch(`${urlBase}/deleteServicios/${id}`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "DELETE",
-        })
-            .then()
-            .catch()
-        obtenerDatos()
+        if(window.confirm("¿Está seguro que desea eliminar este servicio?")){
+            console.log(id)
+            const data = await fetch(`${urlBase}/deleteServicios/${id}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "DELETE",
+            })
+                .then()
+                .catch()
+            obtenerDatos()
+        }
+     
     }
 
     return (

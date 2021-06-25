@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const AddUsuario = () => {
 
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     
     const [user, setUser] = useState({})
 
@@ -13,6 +13,7 @@ const AddUsuario = () => {
 
     const enviarUser = (event) => {
         event.preventDefault();
+        document.getElementById("btn-form").setAttribute('disabled', 'true');
         guardarUser()
     }
 
@@ -49,19 +50,6 @@ const AddUsuario = () => {
         console.log(user)
     }
 
-    const handleChangeSelect = (event) => {
-        let index = event.target.selectedIndex;
-        setUser({
-            ...user,
-            [event.target.name]: event.target.options[index].text
-        })
-        console.log(user)
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        guardarUser()
-    }
     return (
         <Fragment>
             <div className="row">
@@ -98,7 +86,7 @@ const AddUsuario = () => {
                         </div>
                     </div>
                     <div className="col-12">
-                        <button className="btn btn-success"><i className="fas fa-save"></i> Guardar</button>
+                        <button className="btn btn-success" id="btn-form"><i className="fas fa-save"></i> Guardar</button>
                     </div>
                 </form>
             </div>
