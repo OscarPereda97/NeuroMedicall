@@ -268,7 +268,7 @@ const AddAtencion = () => {
                                                                     <strong>{item.nombre}</strong>: {item.dosis} por día <br />
                                                                     Tomarlo por {item.duracion} día(s) (Vía {item.via})<br />
                                                                     
-                                                                    <strong>Indicaciones: </strong>{item.indicaciones != "" ? item.indicaciones : "Ninguna"}
+                                                                    <strong>Indicaciones: </strong>{item.indicaciones != undefined ? item.indicaciones : "Ninguna"}
                                                                 </li>
                                                             </ul>
                                                         </div>
