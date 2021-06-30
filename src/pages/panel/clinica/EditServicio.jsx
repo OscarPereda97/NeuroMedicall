@@ -5,7 +5,7 @@ import 'bootstrap'
 
 const AddServicio = () => {
     const {id} = useParams()
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     
     const [servicio, setServicio] = useState({})
 

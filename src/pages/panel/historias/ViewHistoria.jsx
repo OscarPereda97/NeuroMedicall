@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [atencion, setAtencion] = useState({
         pacienteId: "",
@@ -84,28 +84,28 @@ const AddAtencion = () => {
                         <div className="col-md-6 -col-12">
                             <div className="form-group">
                                 <label className="form-label">Paciente</label>
-                                <input type="text" name="paciente" id="paciente" className="form-control" disabled value={`${atencion.pacienteId.apellidoPaterno} ${atencion.pacienteId.apellidoMaterno} ${atencion.pacienteId.nombres}`} />
+                                <input type="text" name="paciente" id="paciente" className="form-control" disabled value={`${atencion.pacienteId ? atencion.pacienteId.apellidoPaterno : ""} ${atencion.pacienteId ? atencion.pacienteId.apellidoMaterno : ""} ${atencion.pacienteId ? atencion.pacienteId.nombres : ""}`} />
                             </div>
                         </div>
                         <div className="col-md-3 col-12">
                             <div className="form-group">
                                 <label className="form-label">DNI</label>
-                                <input type="number" name="dni" id="dni" className="form-control" disabled value={atencion.pacienteId.nroDocumento} />
+                                <input type="number" name="dni" id="dni" className="form-control" disabled value={atencion.pacienteId ? atencion.pacienteId.nroDocumento : ""} />
                             </div>
                         </div>
                         <div className="col-md-3 col-12">
                             <div className="form-group">
                                 <label className="form-label">Edad</label>
-                                <input type="text" name="edad" id="edad" className="form-control" disabled value={calcularEdad(atencion.pacienteId.fechaNacimiento)} />
+                                <input type="text" name="edad" id="edad" className="form-control" disabled value={atencion.pacienteId ? calcularEdad(atencion.pacienteId.fechaNacimiento) : ""} />
                             </div>
                         </div>
                         <div className="col-md-6 col-12">
                             <label className="form-label">Servicio</label>
-                            <input type="text" name="servicio" id="servicio" className="form-control" disabled value={atencion.servicioId.servicio} />
+                            <input type="text" name="servicio" id="servicio" className="form-control" disabled value={atencion.servicioId ? atencion.servicioId.servicio : ""} />
                         </div>
                         <div className="col-md-6 col-12">
                             <label htmlFor="" className="form-label">Especialista</label>
-                            <input type="text" name="especialista" id="especialista" className="form-control" disabled value={atencion.consultaId.especialista} />
+                            <input type="text" name="especialista" id="especialista" className="form-control" disabled value={atencion.consultaId ? atencion.consultaId.especialista : ""} />
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@ const AddAtencion = () => {
                                     <div className="col-12 p-5 border" id="recetaPrint">
                                         <div className="row">
                                             <div className="col-12">
-                                                <h6><u><strong>Paciente: </strong> {paciente.apellidoPaterno} {paciente.apellidoMaterno} {paciente.nombres}</u></h6>
+                                                <h6><u><strong>Paciente: </strong> {paciente ? paciente.apellidoPaterno : ""} {paciente ? paciente.apellidoMaterno : ""} {paciente ? paciente.nombres : ""}</u></h6>
                                             </div>
                                             <div className="col-6">
                                                 <u><strong><h5>Cantidad</h5></strong></u>

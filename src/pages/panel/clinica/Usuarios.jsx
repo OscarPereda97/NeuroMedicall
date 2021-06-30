@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Usuarios = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([]) //Datos
 
     useEffect(() => {
