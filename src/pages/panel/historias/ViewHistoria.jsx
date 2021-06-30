@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState} from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
@@ -13,6 +13,8 @@ const AddAtencion = () => {
         especialista: ""
     });
     const [medicamento, setMedicamento] = useState([])
+    const [paciente, setPaciente] = useState([])
+    const [cita, setCita] = useState()
 
     const obtenerDatos = async () => {
         const data = await fetch(`${urlBase}/getAtenciones/${id}`)
@@ -21,10 +23,12 @@ const AddAtencion = () => {
         await data.json().then(res => {
             setAtencion(res)
             setMedicamento(res.receta)
+            setPaciente(res.pacienteId)
+            setCita(res.proxCita)
         })
     }
 
-    const printPDF = () =>{
+    const printPDF = () => {
         printDiv("recetaPrint")
     }
 
@@ -46,13 +50,22 @@ const AddAtencion = () => {
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
-   
+
         document.body.innerHTML = printContents;
-   
+
         window.print();
-   
+
         document.body.innerHTML = originalContents;
-   }
+    }
+
+    function formatearFecha(fechaa) {
+        let fecha = new Date(fechaa)
+        let dia = fecha.getDate()
+        let mes = fecha.getMonth() + 1;
+        let anio = fecha.getFullYear();
+
+        return dia + "-" + mes + "-" + anio
+    }
 
     return (
         <Fragment>
@@ -222,12 +235,6 @@ const AddAtencion = () => {
                                     <input type="text" name="plan" id="plan" className="form-control" disabled value={atencion.plan} />
                                 </div>
                             </div>
-                            <div className="col-md-4 col-12">
-                                <div className="form-group">
-                                    <label htmlFor="" className="form-label">Proxima cita</label>
-                                    <input type="date" name="proxCita" id="proxCita" className="form-control" disabled value={atencion.proxCita} />
-                                </div>
-                            </div>
                             <div className="w-100"></div>
                             <div className="col-12">
                                 <div className="row ">
@@ -236,6 +243,9 @@ const AddAtencion = () => {
                                     </div>
                                     <div className="col-12 p-5 border" id="recetaPrint">
                                         <div className="row">
+                                            <div className="col-12">
+                                                <h6><u><strong>Paciente: </strong> {paciente.apellidoPaterno} {paciente.apellidoMaterno} {paciente.nombres}</u></h6>
+                                            </div>
                                             <div className="col-6">
                                                 <u><strong><h5>Cantidad</h5></strong></u>
                                             </div>
@@ -254,13 +264,23 @@ const AddAtencion = () => {
                                                         </div>
                                                         <div className="col-6">
                                                             <ul>
-                                                                <li><strong>{item.nombre}</strong>: {item.dosis} por día <br /> Tomarlo por {item.duracion} día(s)</li>
+                                                                <li>
+                                                                    <strong>{item.nombre}</strong>: {item.dosis} por día <br />
+                                                                    Tomarlo por {item.duracion} día(s) (Vía {item.via})<br />
+                                                                    
+                                                                    <strong>Indicaciones: </strong>{item.indicaciones != "" ? item.indicaciones : "Ninguna"}
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 )
                                             })
                                         }
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <h6><strong>Prox cita: </strong>{formatearFecha(cita)}</h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

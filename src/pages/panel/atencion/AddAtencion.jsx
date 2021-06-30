@@ -75,6 +75,8 @@ const AddAtencion = () => {
         document.getElementById("dosis").value = ""
         document.getElementById("duracion").value = ""
         document.getElementById("cantidad").value = ""
+        document.getElementById("via").value = ""
+        document.getElementById("indicaciones").value = ""
         document.getElementById("medicamento").value = "none"
         setMedicamento({
             medicamentoId: "",
@@ -83,6 +85,8 @@ const AddAtencion = () => {
             dosis: "",
             duracion: "",
             cantidad: "",
+            via: "",
+            indicaciones: "",
         })
         document.getElementById("addMedicamento").disabled = true;
     }
@@ -113,6 +117,7 @@ const AddAtencion = () => {
     }
 
     const guardarConsulta = async () => {
+
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -126,6 +131,7 @@ const AddAtencion = () => {
                 receta: medicamentosTemp
             })
         }
+        
         const response = await fetch(`${urlBase}/setAtencion`, requestOptions)
         const respuesta = await response.json()
 
@@ -375,6 +381,8 @@ const AddAtencion = () => {
                                                     <th>Dosis (Por día)</th>
                                                     <th>Duración (Días)</th>
                                                     <th>Cantidad (Total)</th>
+                                                    <th>Vía</th>
+                                                    <th>Indicaciones</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                             </thead>
@@ -415,6 +423,17 @@ const AddAtencion = () => {
                                                         </div>
                                                     </td>
                                                     <td>
+                                                        <div className="form-group">
+                                                            <input type="text" className="form-control" name="via" id="via" onChange={handleMedicamento} />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="form-group">
+                                                            <input type="text" className="form-control" name="indicaciones" id="indicaciones" onChange={handleMedicamento} />
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
                                                         <button className="btn btn-success" id="addMedicamento" onClick={addMedicamento}><i className="fas fa-plus"></i></button>
                                                     </td>
                                                 </tr>
@@ -427,6 +446,8 @@ const AddAtencion = () => {
                                                                 <td>{item.dosis}</td>
                                                                 <td>{item.duracion}</td>
                                                                 <td>{item.cantidad}</td>
+                                                                <td>{item.via}</td>
+                                                                <td>{item.indicaciones}</td>
                                                                 <td>
                                                                     <button className="btn btn-danger"><i className="fas fa-trash    "></i></button>
                                                                 </td>
