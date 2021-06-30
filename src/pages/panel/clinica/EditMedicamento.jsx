@@ -5,7 +5,7 @@ import 'bootstrap'
 
 const AddMedicamento = () => {
     const {id} = useParams()
-    const urlBase = 'http://localhost:8000'
+    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
     const [medicamento, setMedicamento] = useState({})
 
     useEffect(() => {

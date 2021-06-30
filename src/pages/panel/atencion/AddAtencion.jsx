@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddAtencion = () => {
-    const urlBase = 'http://localhost:8000'
+    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
