@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [atencion, setAtencion] = useState({
         pacienteId: "",
@@ -265,9 +265,7 @@ const AddAtencion = () => {
                                                         <div className="col-6">
                                                             <ul>
                                                                 <li>
-                                                                    <strong>{item.nombre}</strong>: {item.dosis} por día <br />
-                                                                    Tomarlo por {item.duracion} día(s) (Vía {item.via})<br />
-                                                                    
+                                                                    <strong>{item.nombre}</strong><br />
                                                                     <strong>Indicaciones: </strong>{item.indicaciones != undefined ? item.indicaciones : "Ninguna"}
                                                                 </li>
                                                             </ul>

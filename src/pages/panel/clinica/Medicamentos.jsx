@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Medicamentos = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const [datos, setDatos] = useState([])
 
     useEffect(() => {

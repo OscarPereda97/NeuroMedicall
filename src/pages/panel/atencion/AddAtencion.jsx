@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
@@ -203,24 +203,24 @@ const AddAtencion = () => {
                         <div className="col-md-6 -col-12">
                             <div className="form-group">
                                 <label className="form-label">Paciente</label>
-                                <input type="text" name="paciente" id="paciente" className="form-control" value={`${paciente.pacienteId.apellidoPaterno} ${paciente.pacienteId.apellidoMaterno} ${paciente.pacienteId.nombres}`} />
+                                <input type="text" name="paciente" id="paciente" className="form-control" value={`${paciente.pacienteId ? paciente.pacienteId.apellidoPaterno : ""} ${paciente.pacienteId ? paciente.pacienteId.apellidoMaterno : ""} ${paciente.pacienteId ? paciente.pacienteId.nombres : ""}`} />
                             </div>
                         </div>
                         <div className="col-md-3 col-12">
                             <div className="form-group">
                                 <label className="form-label">DNI</label>
-                                <input type="number" name="dni" id="dni" className="form-control" value={paciente.pacienteId.nroDocumento || ""} />
+                                <input type="number" name="dni" id="dni" className="form-control" value={paciente.pacienteId ? paciente.pacienteId.nroDocumento : ""} />
                             </div>
                         </div>
                         <div className="col-md-3 col-12">
                             <div className="form-group">
                                 <label className="form-label">Edad</label>
-                                <input type="text" name="edad" id="edad" className="form-control" value={calcularEdad(paciente.pacienteId.fechaNacimiento) || ""} />
+                                <input type="text" name="edad" id="edad" className="form-control" value={paciente.pacienteId ? calcularEdad(paciente.pacienteId.fechaNacimiento) : ""} />
                             </div>
                         </div>
                         <div className="col-md-6 col-12">
                             <label className="form-label">Servicio</label>
-                            <input type="text" name="servicio" id="servicio" className="form-control" value={paciente.servicioId.servicio} />
+                            <input type="text" name="servicio" id="servicio" className="form-control" value={paciente.servicioId ? paciente.servicioId.servicio : ""} />
                         </div>
                         <div className="col-md-6 col-12">
                             <label htmlFor="" className="form-label">Especialista</label>
@@ -409,22 +409,7 @@ const AddAtencion = () => {
                                                     </td>
                                                     <td>
                                                         <div className="form-group">
-                                                            <input type="number" className="form-control" name="dosis" id="dosis" onChange={handleMedicamento} />
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="form-group">
-                                                            <input type="number" className="form-control" name="duracion" id="duracion" onChange={handleMedicamento} />
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="form-group">
                                                             <input type="number" className="form-control" name="cantidad" id="cantidad" onChange={handleMedicamento} />
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="form-group">
-                                                            <input type="text" className="form-control" name="via" id="via" onChange={handleMedicamento} />
                                                         </div>
                                                     </td>
                                                     <td>
@@ -443,10 +428,7 @@ const AddAtencion = () => {
                                                             <tr>
                                                                 <td>{item.nombre}</td>
                                                                 <td>{item.presentacion}</td>
-                                                                <td>{item.dosis}</td>
-                                                                <td>{item.duracion}</td>
                                                                 <td>{item.cantidad}</td>
-                                                                <td>{item.via}</td>
                                                                 <td>{item.indicaciones}</td>
                                                                 <td>
                                                                     <button className="btn btn-danger"><i className="fas fa-trash    "></i></button>
