@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
 const Pacientes = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
 
     const [datos, setDatos] = useState([]) //Datos
 
@@ -22,7 +22,7 @@ const Pacientes = () => {
     }
 
     const eliminarPaciente = async (id) => {
-        if(window.confirm("¿Está seguro de eliminar este paciente?")){
+        if(window.confirm("¿Está seguro de eliminar este paciente? El eliminar un paciente puede generar errores de campos al visualizar los datos de las historias previamente generadas.")){
             console.log(id)
             await fetch(`${urlBase}/deletePacientes/${id}`, {
                 headers: {
@@ -35,6 +35,15 @@ const Pacientes = () => {
             obtenerDatos()
         }
         
+    }
+
+    function formatearFecha(fechaa){
+        let fecha = new Date(fechaa)
+        let dia = fecha.getDate() +1;
+        let mes = fecha.getMonth() + 1;
+        let anio = fecha.getFullYear();
+
+        return dia + "-" + mes + "-" + anio
     }
 
     return (
@@ -73,7 +82,7 @@ const Pacientes = () => {
                                             <td>{item.apellidoPaterno}</td>
                                             <td>{item.apellidoMaterno}</td>
                                             <td>{item.nombres}</td>
-                                            <td>{item.fechaNacimiento}</td>
+                                            <td>{formatearFecha(item.fechaNacimiento)}</td>
                                             <td>{item.sexo}</td>
                                             <td>{item.estadoCivil}</td>
                                             <td>{item.nroDocumento}</td>

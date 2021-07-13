@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const AddUsuario = () => {
 
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     
     const [user, setUser] = useState({})
 

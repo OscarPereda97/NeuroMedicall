@@ -2,9 +2,10 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
+import CIE10 from './CIE10'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
@@ -15,6 +16,8 @@ const AddAtencion = () => {
     const [medicamentosList, setMedicamentosList] = useState([]); //Lista de medicamentos para mostrar
     const [medicamento, setMedicamento] = useState([]); //Medicamento actual
     const [medicamentosTemp, setMedicamentosTemp] = useState([]); //Lista de medicamentos
+
+    
 
     const listarDatos = async () => {
         await obtenerDatos();
@@ -67,25 +70,25 @@ const AddAtencion = () => {
         console.log(medicamento)
     }
 
+    const enviarMedicamento = (event) => {
+        event.preventDefault();
+        addMedicamento();
+    }
+
     const addMedicamento = async () => {
+
         let arrayAux = medicamentosTemp
         arrayAux.push(medicamento)
         setMedicamentosTemp(arrayAux)
         document.getElementById("presentacion").value = ""
-        document.getElementById("dosis").value = ""
-        document.getElementById("duracion").value = ""
         document.getElementById("cantidad").value = ""
-        document.getElementById("via").value = ""
         document.getElementById("indicaciones").value = ""
         document.getElementById("medicamento").value = "none"
         setMedicamento({
             medicamentoId: "",
             nombre: "",
             presentacion: "",
-            dosis: "",
-            duracion: "",
             cantidad: "",
-            via: "",
             indicaciones: "",
         })
         document.getElementById("addMedicamento").disabled = true;
@@ -170,6 +173,7 @@ const AddAtencion = () => {
     }
 
     useEffect(() => {
+        console.log(CIE10)
         listarDatos()
         obtenerMedicamentos()
         console.log(paciente)
@@ -378,10 +382,7 @@ const AddAtencion = () => {
                                                 <tr>
                                                     <th>Medicamento</th>
                                                     <th>Presentación</th>
-                                                    <th>Dosis (Por día)</th>
-                                                    <th>Duración (Días)</th>
                                                     <th>Cantidad (Total)</th>
-                                                    <th>Vía</th>
                                                     <th>Indicaciones</th>
                                                     <th>Opciones</th>
                                                 </tr>
@@ -419,7 +420,7 @@ const AddAtencion = () => {
                                                     </td>
 
                                                     <td>
-                                                        <button className="btn btn-success" id="addMedicamento" onClick={addMedicamento}><i className="fas fa-plus"></i></button>
+                                                        <button className="btn btn-success" id="addMedicamento" onClick={enviarMedicamento}><i className="fas fa-plus"></i></button>
                                                     </td>
                                                 </tr>
                                                 {
