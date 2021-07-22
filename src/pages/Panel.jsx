@@ -20,6 +20,7 @@ import Atencion from './panel/atencion/Atencion';
 import AddAtencion from './panel/atencion/AddAtencion';
 import Historias from './panel/historias/Historias';
 import ViewHistorias from './panel/historias/ViewHistoria';
+import EditHistoria from './panel/historias/EditHistoria';
 import { Layout, Menu } from 'antd';
 import {  TeamOutlined, LogoutOutlined, MedicineBoxOutlined, SettingOutlined, SnippetsOutlined } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
@@ -100,6 +101,7 @@ class Panel extends React.Component {
                                             <Route exact path="/panel/atencion/add/:id" component={AddAtencion} />
                                             <Route exact path="/panel/historias" component={Historias} />
                                             <Route exact path="/panel/historias/:id" component={ViewHistorias} />
+                                            <Route exact path="/panel/historias/edit/:id" component={EditHistoria} />
                                         </Switch>
                                     </div>
                                 </div>

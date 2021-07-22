@@ -341,6 +341,8 @@ const AddAtencion = () => {
                                 </div>
                             </div>
                             <div className="col-12">
+                                
+
                                 <div className="form-group">
                                     <label htmlFor="" className="form-label">Diagnostico</label>
                                     <textarea name="diagnostico" id="diagnostico" cols="30" rows="7" className="form-control" onChange={handleChange}></textarea>

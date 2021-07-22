@@ -108,6 +108,7 @@ const Historias = () => {
                                             <td>{item.servicioId ? item.servicioId.servicio : ""}</td>
                                             <td>
                                                 <Link to={`/panel/historias/${item._id}`} className="btn btn-primary"><i className="fas fa-file-prescription"></i></Link>
+                                                <Link to={`/panel/historias/edit/${item._id}`} className="ms-1 btn btn-primary"><i className="fas fa-pencil-alt"></i></Link>
                                             </td>
                                         </tr>
                                     )
