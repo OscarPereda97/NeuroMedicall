@@ -5,7 +5,7 @@ import 'bootstrap'
 import CIE10DB from './CIE10'
 
 const AddAtencion = () => {
-    const urlBase = 'http://localhost:8000'
+    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
