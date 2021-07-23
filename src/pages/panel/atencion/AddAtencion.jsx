@@ -2,10 +2,10 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '@popperjs/core'
 import 'bootstrap'
-import CIE10 from './CIE10'
+import CIE10DB from './CIE10'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",
@@ -16,8 +16,45 @@ const AddAtencion = () => {
     const [medicamentosList, setMedicamentosList] = useState([]); //Lista de medicamentos para mostrar
     const [medicamento, setMedicamento] = useState([]); //Medicamento actual
     const [medicamentosTemp, setMedicamentosTemp] = useState([]); //Lista de medicamentos
+    const [cie10Filter, setCie10Filter] = useState(); //Texto de filtro de CIE10
+    const [cie10, setCie10] = useState([]); //Array de CIE10
+    const [diagnosticoActual, setDiagnosticoActual] = useState(); //Actual
+    const [diagnostico, setDiagnostico] = useState([]); //Diagnosticos
 
-    
+    const handleFiltro = async (event) =>{
+        setCie10Filter(event.target.value)
+        console.log(cie10Filter)
+    };
+
+    const enviarFiltrarCIE10 = async (event)=>{
+        event.preventDefault();
+        filtrarCIE10();
+    }
+
+    const filtrarCIE10 = async () =>{
+        setCie10(CIE10DB.filter(function(item){
+            return item.enfermedad.includes(cie10Filter)
+        }))
+        console.log(cie10)
+    }
+
+    const selectDiagnosticoActual = async (event)=>{
+        let index = event.target.selectedIndex;
+        setDiagnosticoActual( event.target.options[index].text)
+        console.log(diagnosticoActual)
+    }
+
+     const sendDiagnostico = async (event)=>{
+        event.preventDefault();
+        saveDiagnostico();
+     }
+
+     const saveDiagnostico = async ()=>{
+        let diagnosticoAux = diagnostico;
+        diagnosticoAux.push(diagnosticoActual);
+        setDiagnostico(diagnosticoAux);
+        setCie10([])
+     }
 
     const listarDatos = async () => {
         await obtenerDatos();
@@ -131,10 +168,11 @@ const AddAtencion = () => {
                 pacienteId: paciente.pacienteId._id,
                 servicioId: paciente.servicioId._id,
                 consultaId: id,
-                receta: medicamentosTemp
+                receta: medicamentosTemp,
+                diagnostico
             })
         }
-        
+
         const response = await fetch(`${urlBase}/setAtencion`, requestOptions)
         const respuesta = await response.json()
 
@@ -154,7 +192,8 @@ const AddAtencion = () => {
                     pacienteId: paciente.pacienteId._id,
                     servicioId: paciente.servicioId._id,
                     consultaId: id,
-                    receta: medicamentosTemp
+                    receta: medicamentosTemp,
+                    diagnostico
                 })
             }
             const responsee = await fetch(`${urlBase}/updateStatus/${id}`, requestOptionss)
@@ -173,7 +212,6 @@ const AddAtencion = () => {
     }
 
     useEffect(() => {
-        console.log(CIE10)
         listarDatos()
         obtenerMedicamentos()
         console.log(paciente)
@@ -341,12 +379,58 @@ const AddAtencion = () => {
                                 </div>
                             </div>
                             <div className="col-12">
-                                
-
-                                <div className="form-group">
-                                    <label htmlFor="" className="form-label">Diagnostico</label>
-                                    <textarea name="diagnostico" id="diagnostico" cols="30" rows="7" className="form-control" onChange={handleChange}></textarea>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <h5>Diagnostico</h5>
+                                    </div>
+                                    <div className="col-md-6 col-12">
+                                        <div className="form-group">
+                                            <label htmlFor="" className="form-label">Buscar enfermedad</label>
+                                            <input type="text" id="findDiagnostico" name="findDiagnostico" onChange={handleFiltro} className="form-control" />
+                                            <button className="btn btn-success btn-block" onClick={enviarFiltrarCIE10}>Buscar</button>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 col-12">
+                                        <div className="form-group">
+                                            <label>Enfermedades</label>
+                                            <select name="cie10" id="cie10" className="form-control" onChange={selectDiagnosticoActual}>
+                                                <option >-Seleccione una enfermedad-</option>
+                                                {
+                                                    cie10.map(item =>{
+                                                        return(
+                                                            <option key={item.codigo} value={item.codigo}>{item.enfermedad}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                            <button className="btn btn-success" onClick={sendDiagnostico}>Añadir</button>
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <table className="table table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Enfermedad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    diagnostico.map(item=>{
+                                                        return (
+                                                            <tr>
+                                                                <td>{item}</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
+
+
+
                             </div>
                             <div className="col-12">
                                 <div className="form-group">

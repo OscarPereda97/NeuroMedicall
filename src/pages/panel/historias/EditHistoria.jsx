@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const EditHistoria = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'http://localhost:8000'
     const { id } = useParams()
     const [atencion, setAtencion] = useState({
         pacienteId: "",
