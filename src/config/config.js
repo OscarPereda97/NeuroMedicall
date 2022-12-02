@@ -1,5 +1,5 @@
 const config = {
-    ROOT_URL: "https://neuromedicall-backend.herokuapp.com",
+    ROOT_URL: "https://neuromedicall-backend-production.up.railway.app",
     LOCAL_URL: "http://localhost:8000"
 }
 
