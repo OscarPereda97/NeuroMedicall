@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddRegistroConsulta = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
     const [documento, setDocumento] = useState()
     const [paciente, setPaciente] = useState()
     const [pacienteId, setPacienteId] = useState()

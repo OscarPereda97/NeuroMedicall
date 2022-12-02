@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const AddServicio = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
     
     const [servicio, setServicio] = useState({})
 

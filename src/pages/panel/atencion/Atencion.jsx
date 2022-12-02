@@ -5,7 +5,7 @@ import 'bootstrap'
 import '../../css/ViewAtencion.css'
 
 const Atencion = () => {
-    const urlBase = 'https://neuromedicall-backend.herokuapp.com'
+    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
 
     const [datos, setDatos] = useState([])
 
