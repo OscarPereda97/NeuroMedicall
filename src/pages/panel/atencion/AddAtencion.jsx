@@ -5,7 +5,7 @@ import 'bootstrap'
 import CIE10DB from './CIE10'
 
 const AddAtencion = () => {
-    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
+    const urlBase = 'https://neuromedicall-backend.onrender.com'
     const { id } = useParams()
     const [paciente, setPaciente] = useState({
         pacienteId: "",

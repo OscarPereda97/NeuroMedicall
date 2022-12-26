@@ -1,5 +1,5 @@
 const config = {
-    ROOT_URL: "https://neuromedicall-backend-production.up.railway.app",
+    ROOT_URL: "https://neuromedicall-backend.onrender.com",
     LOCAL_URL: "http://localhost:8000"
 }
 

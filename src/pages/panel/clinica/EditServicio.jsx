@@ -5,7 +5,7 @@ import 'bootstrap'
 
 const AddServicio = () => {
     const {id} = useParams()
-    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
+    const urlBase = 'https://neuromedicall-backend.onrender.com'
     
     const [servicio, setServicio] = useState({})
 

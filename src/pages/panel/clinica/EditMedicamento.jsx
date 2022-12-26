@@ -5,7 +5,7 @@ import 'bootstrap'
 
 const AddMedicamento = () => {
     const {id} = useParams()
-    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
+    const urlBase = 'https://neuromedicall-backend.onrender.com'
     const [medicamento, setMedicamento] = useState({})
 
     useEffect(() => {

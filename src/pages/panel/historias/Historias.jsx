@@ -4,7 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 
 const Historias = () => {
-    const urlBase = 'https://neuromedicall-backend-production.up.railway.app'
+    const urlBase = 'https://neuromedicall-backend.onrender.com'
 
     const [datos, setDatos] = useState([{
         pacienteId: "",
